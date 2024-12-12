@@ -10,6 +10,9 @@
     gap: 15px;
 }
 
+p{
+    display: inline;
+}
 .square{
     width: 8rem;
     height: 8rem;
@@ -17,18 +20,23 @@
     margin: 15px;
     border-radius: 20px;
     display: inline-block;
+    text-align: center;
 }
 
-.green{
+.green, .green>*{
     background-color: green;
+    color: green;
 }
-.red{
+.red, .red>*{
     background-color: red;
+    color: red;
 }
 .yellow{
     background-color: yellow;
+    color: yellow;
 }
 .blue{
     background-color: blue;
+    color: blue;
 }
 

@@ -14,6 +14,18 @@ let inputList = [];
 let levelCount = 1;
 handleKeyPress();
 
+const greenSound = new Audio("audioFiles/green.mp3");
+const redSound = new Audio("audioFiles/red.mp3");
+const yellowSound = new Audio("audioFiles/yellow.mp3");
+const blueSound = new Audio("audioFiles/blue.mp3");
+const lossSound = new Audio("audioFiles/lose.wav");
+
+const audioList = {
+    1: greenSound,
+    2: redSound,
+    3: yellowSound,
+    4: blueSound
+};
 
 function handleKeyPress(){
     document.addEventListener("DOMContentLoaded", ()=>{
@@ -31,8 +43,7 @@ function popSquare(){
     const num = Math.floor(Math.random()*4)+1;
     const currentSquare = list[num];
     orderList.push(num);
-     
-
+    audioList[num].play();
     currentSquare.style.opacity = "0";
     
     setTimeout(() => {
@@ -42,21 +53,25 @@ function popSquare(){
 
 function handleClick(key) {
     inputList.push(key);
-    
+    audioList[key].play();
     const currentIndex = inputList.length - 1;
     if (inputList[currentIndex] !== orderList[currentIndex]) {
-        gameText.innerHTML = "Game Over! Press any key to Restart";
-        orderList = [];
-        inputList = [];
-        levelCount = 1;
-        handleKeyPress();
+        gameOver();
         return;
     }
 
     if (inputList.length === orderList.length && inputList.length!=0) {
         levelCount++;
         inputList = []; 
-        popSquare(); 
+        setTimeout(() => popSquare(), 1000); 
     }
 }
 
+function gameOver(){
+    lossSound.play();
+    gameText.innerHTML = "Game Over! Press any key to Restart";
+    orderList = [];
+    inputList = [];
+    levelCount = 1;
+    handleKeyPress();
+}

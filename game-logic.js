@@ -22,7 +22,6 @@ function handleKeyPress(){
 }
 
 function startGame(callback){
-    gameText.innerHTML = "Level 1";
     document.removeEventListener('keydown', startGame);
     callback();
 }
@@ -32,7 +31,7 @@ function popSquare(){
     const num = Math.floor(Math.random()*4)+1;
     const currentSquare = list[num];
     orderList.push(num);
-    console.log(orderList);  
+     
 
     currentSquare.style.opacity = "0";
     
@@ -41,29 +40,23 @@ function popSquare(){
     }, 150);
 }
 
-function handleClick(key){
+function handleClick(key) {
     inputList.push(key);
-    console.log(inputList);
     
-    if (inputList.length === orderList.length) {
-        const isCorrect = checkValue(inputList);
-        if (isCorrect) {
-            levelCount++;
-            inputList = []; 
-            popSquare(); 
-        } else {
-            gameText.innerHTML = "Game Over! Press any key to Restart";
-            orderList = [];
-            inputList = [];
-            handleKeyPress(); 
-        }
+    const currentIndex = inputList.length - 1;
+    if (inputList[currentIndex] !== orderList[currentIndex]) {
+        gameText.innerHTML = "Game Over! Press any key to Restart";
+        orderList = [];
+        inputList = [];
+        levelCount = 1;
+        handleKeyPress();
+        return;
+    }
+
+    if (inputList.length === orderList.length && inputList.length!=0) {
+        levelCount++;
+        inputList = []; 
+        popSquare(); 
     }
 }
 
-
-function checkValue(userInput) {
-    return userInput.length === orderList.length && 
-           userInput.every((val, index) => val === orderList[index]);
-}
-
-window.handleClick = handleClick;

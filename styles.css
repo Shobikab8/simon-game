@@ -10,17 +10,14 @@
     gap: 15px;
 }
 
-p{
-    display: inline;
-}
+
 .square{
     width: 8rem;
     height: 8rem;
     border: 7px solid black;
     margin: 15px;
     border-radius: 20px;
-    display: inline-block;
-    text-align: center;
+    display: inline-block; 
 }
 
 .green, .green>*{

@@ -3,29 +3,29 @@ const green = document.querySelector(".green");
 const red = document.querySelector(".red");
 const yellow = document.querySelector(".yellow");
 const blue = document.querySelector(".blue");
+
+let orderList = []; 
+let inputList = []; 
+let levelCount = 0;
+
+
 const list = {
     1: green,
     2: red,
     3: yellow,
     4: blue
 };
-let orderList = [];
-let inputList = [];
-let levelCount = 0;
-handleKeyPress();
-
-const greenSound = new Audio("audioFiles/green.mp3");
-const redSound = new Audio("audioFiles/red.mp3");
-const yellowSound = new Audio("audioFiles/yellow.mp3");
-const blueSound = new Audio("audioFiles/blue.mp3");
-const lossSound = new Audio("audioFiles/lose.wav");
 
 const audioList = {
-    1: greenSound,
-    2: redSound,
-    3: yellowSound,
-    4: blueSound
+    1: new Audio("audioFiles/green.mp3"),
+    2:  new Audio("audioFiles/red.mp3"),
+    3: new Audio("audioFiles/yellow.mp3"),
+    4: new Audio("audioFiles/blue.mp3")
 };
+const lossSound = new Audio("audioFiles/lose.wav");
+
+handleKeyPress();
+
 
 function handleKeyPress(){
     document.addEventListener("DOMContentLoaded", ()=>{
@@ -33,9 +33,9 @@ function handleKeyPress(){
     })
 }
 
-function startGame(callback){
-    document.removeEventListener('keydown', startGame);
-    callback();
+function startGame(popSquare){
+    document.removeEventListener('keydown', startGame); 
+    popSquare();
 }
 
 function popSquare(){
@@ -55,7 +55,6 @@ function popSquare(){
 function handleClick(key) {
     if(levelCount==0) return;
     inputList.push(key);
-    const currentSquare = list[key];
 
     audioList[key].play();
     
@@ -68,7 +67,7 @@ function handleClick(key) {
     if (inputList.length === orderList.length && inputList.length!=0) {
         
         inputList = []; 
-        setTimeout(() => popSquare(), 1000); 
+        setTimeout(() => popSquare(), 600); 
     }
 }
 
@@ -77,6 +76,6 @@ function gameOver(){
     gameText.innerHTML = "Game Over! Press any key to Restart";
     orderList = [];
     inputList = [];
-    levelCount = 1;
+    levelCount = 0;
     handleKeyPress();
 }

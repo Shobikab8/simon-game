@@ -56,14 +56,9 @@ function handleClick(key) {
     if(levelCount==0) return;
     inputList.push(key);
     const currentSquare = list[key];
-    const currentColor = window.getComputedStyle(currentSquare).backgroundColor;
-    currentSquare.style.backgroundColor = "gray";
-    
-    setTimeout(() => {
-        currentSquare.style.backgroundColor = currentColor;
-    }, 150);
 
     audioList[key].play();
+    
     const currentIndex = inputList.length - 1;
     if (inputList[currentIndex] !== orderList[currentIndex]) {
         gameOver();

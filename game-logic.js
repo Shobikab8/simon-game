@@ -78,8 +78,15 @@ function handleClick(key) {
 function gameOver(){
     lossSound.play();
     gameText.innerHTML = "Game Over! Press any key to Restart";
-    orderList = [];
+    orderList = []; //Reset game sequence list
     inputList = [];
     levelCount = 0;
+
+    // Temporarily change the background color
+    document.documentElement.style.setProperty("--bg-color", "red");
+    setTimeout(() => {
+        document.documentElement.style.setProperty("--bg-color", "rgb(16, 35, 69)");
+    }, 150);
+
     handleKeyPress(); // Restart game
 }

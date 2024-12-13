@@ -1,5 +1,9 @@
+:root{
+    --bg-color: rgb(16, 35, 69);
+}
+
 *{
-    background-color: rgb(16, 35, 69);
+    background-color: var(--bg-color);
     color: rgb(255, 255, 175);
     font-family: 'Press Start 2P';
 }

@@ -11,7 +11,7 @@ const list = {
 };
 let orderList = [];
 let inputList = [];
-let levelCount = 1;
+let levelCount = 0;
 handleKeyPress();
 
 const greenSound = new Audio("audioFiles/green.mp3");
@@ -39,6 +39,7 @@ function startGame(callback){
 }
 
 function popSquare(){
+    levelCount++;
     gameText.innerHTML = "Level "+levelCount;
     const num = Math.floor(Math.random()*4)+1;
     const currentSquare = list[num];
@@ -52,6 +53,7 @@ function popSquare(){
 }
 
 function handleClick(key) {
+    if(levelCount==0) return;
     inputList.push(key);
     const currentSquare = list[key];
     const currentColor = window.getComputedStyle(currentSquare).backgroundColor;
@@ -69,7 +71,7 @@ function handleClick(key) {
     }
 
     if (inputList.length === orderList.length && inputList.length!=0) {
-        levelCount++;
+        
         inputList = []; 
         setTimeout(() => popSquare(), 1000); 
     }

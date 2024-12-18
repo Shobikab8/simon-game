@@ -19,7 +19,7 @@ const list = {
 
 const audioList = {
     1: new Audio("audioFiles/green.mp3"),
-    2: new Audio("audioFiles/red.mp3"),
+    2: new Audio("audioFiles/red-new.mp3"),
     3: new Audio("audioFiles/yellow.mp3"),
     4: new Audio("audioFiles/blue.mp3")
 };
